@@ -2,7 +2,7 @@
 
 # Args used by from statements must be defined here:
 ARG DotNetRepo=microsoft/dotnet
-ARG DotNetTag=2.0.5-sdk-2.1.4-nanoserver-1709
+ARG DotNetTag=2.0.5-sdk-2.1.4-nanoserver-sac2016
 ARG WindowsServerCoreRepo=microsoft/windowsservercore
 ARG WindowsServerCoreTag=latest
 ARG PS_VERSION=6.0.1
@@ -21,11 +21,12 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN Invoke-WebRequest $env:PS_DOWNLOAD_URL -OutFile powershell.zip; `
     Expand-Archive powershell.zip -DestinationPath \PowerShell
 
+
 # Install PowerShell into dotnet image
 FROM ${DotNetRepo}:$DotNetTag
 
-# In order to set system PATH, ContainerAdministrator must be used
-USER ContainerAdministrator 
+# Revert SHELL temporarily
+SHELL ["cmd", "/S", "/C"]
 
 # Copy Powershell Core from the installer containter
 ENV ProgramFiles C:\Program Files
@@ -36,9 +37,6 @@ RUN setx /M PATH "%PATH%;%ProgramFiles%\PowerShell"
 
 # Persist %PSCORE% ENV variable for user convenience
 ENV PSCORE="$ProgramFiles\PowerShell\pwsh.exe"
-
-# return to low privilege user
-USER ContainerUser
 
 # Setup PowerShell as default shell
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
