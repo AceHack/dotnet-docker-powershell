@@ -1,0 +1,10 @@
+language: cpp
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+
+install:
+  - docker version
