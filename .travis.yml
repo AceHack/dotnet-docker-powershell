@@ -1,10 +1,10 @@
-language: cpp
+sudo: required
+      
+services:
+  - docker
 
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: required
-
-install:
+before_install:
   - docker version
+
+script:
+  - ./build.sh
