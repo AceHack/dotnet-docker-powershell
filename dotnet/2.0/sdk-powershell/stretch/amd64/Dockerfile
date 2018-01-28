@@ -11,12 +11,13 @@ FROM ${DotNetRepo}:$DotNetTag
 # Register the Microsoft Product feed
 # Update the list of products
 # Install PowerShell
-RUN sudo apt-get update && `
-    sudo apt-get install curl gnupg apt-transport-https && `
-    curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - && `
-    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/microsoft.list' && `
-    sudo apt-get update && `
-    sudo apt-get install -y powershell
+RUN apt-get update && `
+    apt-get install curl gnupg apt-transport-https && `
+    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && `
+    sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/microsoft.list' && `
+    apt-get update && `
+    apt-get install -y powershell && `
+    rm -rf /var/lib/apt/lists/*
 
 # Setup PowerShell as default shell
 SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
