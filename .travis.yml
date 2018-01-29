@@ -7,10 +7,9 @@ before_install:
   - docker version
 
 script:
-  - docker build -t acehack/dotnet:2.0.5-sdk-powershell-2.1.4-stretch dotnet/2.0/sdk-powershell/stretch/amd64
+  - ./scripts/build.sh
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin;
-    docker push acehack/dotnet:2.0.5-sdk-powershell-2.1.4-stretch;
+    ./scripts/deploy.sh
     fi

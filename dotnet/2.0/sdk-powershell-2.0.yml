@@ -1,0 +1,10 @@
+image: acehack/dotnet:2.0
+manifests:
+  - image: acehack/dotnet:2.0.5-sdk-powershell-2.1.4-nanoserver-1709
+    platform:
+      architecture: amd64
+      os: windows
+  - image: acehack/dotnet:2.0.5-sdk-powershell-2.1.4-stretch
+    platform:
+      architecture: amd64
+      os: linux
