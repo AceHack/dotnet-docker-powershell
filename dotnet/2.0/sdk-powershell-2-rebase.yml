@@ -1,6 +1,6 @@
-image: acehack/dotnet:2.0-sdk-powershell
+image: acehack/dotnet:2-sdk-powershell-rebase
 manifests:
-  - image: acehack/dotnet:2.0.5-sdk-powershell-2.1.4-nanoserver-1709
+  - image: acehack/dotnet:2.0.5-sdk-powershell-2.1.4-rebase-nanoserver-1709
     platform:
       architecture: amd64
       os: windows

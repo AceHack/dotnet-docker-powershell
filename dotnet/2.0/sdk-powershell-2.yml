@@ -1,4 +1,4 @@
-image: acehack/dotnet:2
+image: acehack/dotnet:2-sdk-powershell
 manifests:
   - image: acehack/dotnet:2.0.5-sdk-powershell-2.1.4-nanoserver-1709
     platform:
