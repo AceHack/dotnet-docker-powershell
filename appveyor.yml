@@ -8,8 +8,8 @@ environment:
     secure: SPi69AkfHhHUwGu46fus+w==
 
 install:
-  - ps: Get-Module -ListAvailable
-  - ps: Update-Module -Name "Docker"
+  - ps: Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+  - ps: Start-Service Docker
   - ps: Write-Host Server version $(gp 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').BuildLabEx
   - docker version
 
