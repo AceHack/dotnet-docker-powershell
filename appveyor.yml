@@ -8,7 +8,8 @@ environment:
     secure: SPi69AkfHhHUwGu46fus+w==
 
 install:
-  - PS: Update-Module -Name "ContosoModule"
+  - ps: Get-Module -ListAvailable
+  - ps: Update-Module -Name "Docker"
   - ps: Write-Host Server version $(gp 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').BuildLabEx
   - docker version
 
