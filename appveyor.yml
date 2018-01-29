@@ -8,10 +8,7 @@ environment:
     secure: SPi69AkfHhHUwGu46fus+w==
 
 install:
-  - ps: Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
-  - ps: Start-Service Docker
-  - ps: Write-Host Server version $(gp 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').BuildLabEx
-  - docker version
+  - ps: .\scripts\install.ps1
 
 build_script:
   - ps: .\scripts\build.ps1

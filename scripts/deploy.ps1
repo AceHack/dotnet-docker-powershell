@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop';
 
 # login to docker hub
-"$env:DOCKER_PASS" | docker login --username "$env:DOCKER_USER" --password-stdin
+docker login --username "$env:DOCKER_USER" --password "$env:DOCKER_PASS"
 
 # push images
 docker push acehack/dotnet:2.0.5-sdk-powershell-2.1.4-nanoserver-sac2016

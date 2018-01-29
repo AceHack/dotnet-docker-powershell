@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker version
+  - ./scripts/install.sh;
 
 script:
   - ./scripts/build.sh;
